@@ -31,8 +31,8 @@ import {GlobalContext} from "../context/GlobalState"
             return (
                 <div className="movie-card">
                     <div className="poster">
-                        <img src={movie.Poster == "N/A" ? "./poster.jpg" : movie.Poster} alt="poster"/>
-                        <button>{type ? type : movie.Genre ? movie.Genre.split(" ")[0] : "Not Found"}</button>
+                        <div className="image-div"><img src={movie.Poster == "N/A" ? "./poster.jpg" : movie.Poster} alt="poster"/></div>
+                        <button>{type ? type : movie.Genre ? movie.Genre.split(" ")[0].slice(0, -1) : "Not Found"}</button>
                         <button onClick={() => addMovieToFavorites(movie.imdbID)} disabled={storedMovie}><i className="far fa-heart"></i></button>
                     </div>
                     <div className="movie-details">
@@ -43,7 +43,7 @@ import {GlobalContext} from "../context/GlobalState"
                         <div className="movie-title-details">
                             <h6>{movie.Year}</h6>
                             <h3>{movie.Title}</h3>
-                            <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p>{movie.Plot}</p>
                         </div>
                     </div>
                 </div>

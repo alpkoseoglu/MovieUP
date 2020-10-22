@@ -38,7 +38,7 @@ const HomePage = () => {
                                     <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                                 </div>
                                 <div className="actions">
-                                    <button><span>&#x2665;</span> Add to Favorites</button>
+                                    <button><i className="far fa-heart"></i> Add to Favorites</button>
                                     <a href=""><small>View Details</small></a>
                                 </div>
                             </div>

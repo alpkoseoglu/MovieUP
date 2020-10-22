@@ -65,7 +65,7 @@ export const GlobalProvider = props => {
     
         for (let i = 1; i < 10; i++) {
             promises.push(
-                await fetch(`http://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&s=${query}&y=${year}&page=${i}`).then(resp => resp.json()).then((data) => {
+                await fetch(`https://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&s=${query}&y=${year}&page=${i}`).then(resp => resp.json()).then((data) => {
                     if (!data.Error) {
                         response = [...response, ...data.Search]
                     }

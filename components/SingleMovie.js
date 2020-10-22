@@ -14,7 +14,7 @@ import {GlobalContext} from "../context/GlobalState"
 
     useEffect( () => {
         const fetchMovie = () => {
-            fetch(`http://www.omdbapi.com/?i=${mov}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`)
+            fetch(`https://www.omdbapi.com/?i=${mov}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`)
             .then(data => data.json()).then(resp => {
                 if (resp.Genre.includes(type)) {
                     console.log(resp)

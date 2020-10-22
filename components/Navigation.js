@@ -14,7 +14,7 @@ const Navigation = () => {
     const submit = (e) => {
         //e.preventDefault()
         if (e.keyCode == 13) {
-            getAllMovies(query)
+            getAllMovies(query, "", "")
         } 
     }
 

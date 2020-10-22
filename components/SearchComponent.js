@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react"
+import {useState} from "react"
 
 import {useContext} from "react"
 import {GlobalContext} from "../context/GlobalState"
@@ -24,41 +24,7 @@ const SearchComponent = () => {
         e.preventDefault()
         setType(e.target.value)
     }
-/*
-    const handleClick = async () => {
-        //fetch(`http://www.omdbapi.com/?apikey=172c0be8&s=${query}&page=1`)
-        //    .then(res => res.json())
-        //    .then(data => setResults(data.Search))
-        
-        const promises = [] 
-        let response = []
 
-        updateSearchResultsList([])
-    
-        for (let i = 1; i < 10; i++) {
-            promises.push(
-                await fetch(`http://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&s=${query}&y=${year}&page=${i}`).then(resp => resp.json()).then((data) => {
-                    if (!data.Error) {
-                        response = [...response, ...data.Search]
-                    }
-                    //console.log(res)
-                })
-            )
-        }
-        Promise.all(promises).then(() => {
-        setResults([...response])
-        console.log("Promises Resolved!")
-        })
-        updateSearchResultsList(response)
-        window.location = "/search-results"
-    }
-*/
-/*
-    useEffect(() => {
-        updateSearchResultsList(results)
-        
-    },[results])
-*/
     return (
         <div className="wide-search">
             <ul className="wide-search-list">

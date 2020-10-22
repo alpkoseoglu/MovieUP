@@ -19,8 +19,6 @@ const SearchResults = () => {
         } 
     },[])
 
-    
-
     return (
         <Page>
             <Head>

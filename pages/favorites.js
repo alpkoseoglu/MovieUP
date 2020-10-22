@@ -1,4 +1,4 @@
-import Page from "../components/page"
+import Page from "./Page"
 import Head from "next/head"
 import {useEffect, useState} from "react"
 

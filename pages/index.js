@@ -1,4 +1,4 @@
-import Page from "../pages/page"
+import Page from "./Page"
 import Head from "next/head"
 import SearchComponent from "../components/SearchComponent"
 

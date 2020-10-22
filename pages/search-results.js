@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react"
 
-import Page from "./page"
+import Page from "./Page"
 import Head from "next/head"
 import SearchComponent from "../components/SearchComponent"
 import SingleMovie from "../components/SingleMovie"

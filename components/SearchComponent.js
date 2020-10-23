@@ -10,7 +10,7 @@ const SearchComponent = () => {
     const [query, setQuery] = useState("")
     const [year, setYear] = useState("")
     const [type, setType] = useState("")
-    const [types] = useState(["Action", "Comedy", "Romance", "Horror", "Sci-Fi", "Biography", "Drana", "Adventure", "Thriller", "Short", "Western", "History", "Fantasy", "Animation", "Crime", "Family", "Music", "Musical", "Documentary", "War", "Mystery", "Sport"])
+    const [types] = useState(["Action", "Comedy", "Romance", "Horror", "Sci-Fi", "Biography", "Drama", "Adventure", "Thriller", "Short", "Western", "History", "Fantasy", "Animation", "Crime", "Family", "Music", "Musical", "Documentary", "War", "Mystery", "Sport"])
 
     const handleQuery = (e) => {
         e.preventDefault()

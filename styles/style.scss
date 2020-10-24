@@ -7,6 +7,8 @@ $fw-normal: 700;
 $fw-medium: 400;
 $font: "Poppins";
 $yellow-bg: rgba(245, 197, 24, 0.8);
+$box-shadow: 0 4px 12px rgba(39, 13, 48, 0.25);
+$search-box-shadow: 0px 14px 26px rgba(39, 13, 48, 0.25);
 
 * {
   box-sizing: border-box;
@@ -170,7 +172,7 @@ input {
     background-color: $white;
     border-radius: 5px;
     bottom: -10%;
-    box-shadow: 0px 14px 26px rgba(39, 13, 48, 0.25);
+    box-shadow: $search-box-shadow;
 
     > .wide-search-list-items {
       width: 80%;
@@ -180,10 +182,16 @@ input {
       input,
       button {
         width: 100%;
+        height: 2.2rem;
         border-radius: 5px;
         background-color: $grey;
         border: none;
         outline: none;
+      }
+      button {
+        background-color: $yellow;
+        color: $white;
+        box-shadow: $box-shadow;
       }
       > i {
         position: relative;
@@ -252,6 +260,7 @@ input {
 
   .movie-details {
     margin: auto;
+    padding: 1% 1% 1% 4%;
     font-size: 1rem;
     .imdb-info {
       > button {
@@ -271,10 +280,11 @@ input {
       > button {
         background-color: $yellow;
         border: none;
-        border-radius: 2px;
+        border-radius: 5px;
         color: $white;
         padding: 0.525rem;
         font-size: 1rem;
+        box-shadow: $box-shadow;
         > i {
           font-size: 1.3rem;
         }
@@ -431,7 +441,7 @@ input {
             flex-direction: row;
             justify-content: space-around;
             align-items: center;
-            margin: 26% auto 2% -10%;
+            margin: 20% auto 2% -10%;
           }
         }
       }

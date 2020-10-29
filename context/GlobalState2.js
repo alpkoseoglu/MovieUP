@@ -86,7 +86,7 @@ export const GlobalStateProvider2 = ({ children }) => {
         isLoading(true)
         const getMovies = async (pageNo = 1) => {
             let apiResults = await fetch(
-                `http://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&s=${name}&y=${year}&page=${pageNo}`
+                `https://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&s=${name}&y=${year}&page=${pageNo}`
             ).then((resp) => resp.json())
             return apiResults.Search
         }

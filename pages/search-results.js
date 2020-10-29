@@ -1,24 +1,39 @@
-import {useState, useEffect} from "react"
+import { useState, useEffect, useContext } from "react"
 
 import Page from "./Page"
 import Head from "next/head"
 import SearchComponent from "../components/SearchComponent"
 import SingleMovie from "../components/SingleMovie"
 
-const SearchResults = () => {
+import { GlobalState2 } from "../context/GlobalState2"
 
+const SearchResults = () => {
     const [movies, setMovies] = useState([])
     const [type, setType] = useState("")
 
+    const { loading, searchResults, searchParams } = useContext(GlobalState2)
+    /*
     useEffect(() => {
-        if(localStorage.getItem("searchResults").length > 0) {
-            setMovies(JSON.parse(localStorage.getItem("searchResults")).sort((a,b) => +b.Year - +a.Year))
+        if (localStorage.getItem("searchResults").length > 0) {
+            setMovies(JSON.parse(localStorage.getItem("searchResults")).sort((a, b) => +b.Year - +a.Year))
             setType(JSON.parse(localStorage.getItem("searchType")))
         } else {
             console.log("Local Storage is empty")
-        } 
-    },[])
+        }
+    }, [])
+*/
 
+    useEffect(() => {
+        setMovies(searchResults)
+    }, [searchResults])
+
+    useEffect(() => {
+        setType(searchParams.type)
+    }, [])
+
+    if (loading) {
+        return <div>Loading...</div>
+    }
     return (
         <Page>
             <Head>
@@ -26,17 +41,20 @@ const SearchResults = () => {
             </Head>
             <SearchComponent />
             <div className="breadcrumbs">
-                <span>Home / </span><span>Search results</span>
+                <span>Home / </span>
+                <span>Search results</span>
             </div>
             <div className="results-header">
-                <h2>Search Result : <span>{}</span> </h2>          
+                <h2>
+                    Search Result : <span>{searchParams.query}</span>
+                </h2>
             </div>
             <div className="results-container">
-                { movies.length > 0 ? movies.map((mov,i) => (
-                    <SingleMovie key={i} mov={mov.imdbID} type={type} />
-                ))
-                : <h1>Not Found!</h1>
-            }
+                {movies.length > 0 ? (
+                    movies.map((mov, i) => <SingleMovie key={i} mov={mov.imdbID} type={type} />)
+                ) : (
+                    <h1>Not Found!</h1>
+                )}
             </div>
         </Page>
     )

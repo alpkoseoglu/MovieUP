@@ -1,54 +1,62 @@
-import {useState,useEffect} from "react"
+import { useState, useEffect, useContext } from "react"
 import Link from "next/link"
 
-import {useContext} from "react"
-import {GlobalContext} from "../context/GlobalState"
+import { GlobalState2 } from "../context/GlobalState2"
 
- const SingleMovie = ({mov,type}) => {
-
-    const {addMovieToFavorites, favoritesList} = useContext(GlobalContext)
+const SingleMovie = ({ mov, type }) => {
+    const { favorites, addToFavorites } = useContext(GlobalState2)
 
     const [movie, setMovie] = useState({})
 
-    let storedMovie = favoritesList.find(item => item === mov)
+    let storedMovie = favorites.find((item) => item.imdbID === mov)
 
-    useEffect( () => {
+    useEffect(() => {
         const fetchMovie = () => {
             fetch(`https://www.omdbapi.com/?i=${mov}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`)
-            .then(data => data.json()).then(resp => {
-                if (resp.Genre.includes(type)) {
-                    console.log(resp)
-                    setMovie(resp)
-                }
-            })
+                .then((data) => data.json())
+                .then((resp) => {
+                    if (resp.Genre.includes(type)) {
+                        setMovie(resp)
+                    }
+                })
         }
         fetchMovie()
-    },[])
+    }, [])
 
-        if (!movie.Title) {
-            return null
-        }
-            return (
-                <div className="movie-card">
-                    <div className="poster">
-                        <div className="image-div"><img src={movie.Poster == "N/A" ? "./poster.jpg" : movie.Poster} alt="poster"/></div>
-                        <button>{type ? type : movie.Genre ? movie.Genre.split(" ")[0].slice(0, -1) : "Not Found"}</button>
-                        <button onClick={() => addMovieToFavorites(movie.imdbID)} disabled={storedMovie}><i className="far fa-heart"></i></button>
-                    </div>
-                    <div className="movie-details">
-                        <div className="imdb-info">
-                            <Link href={`https://www.imdb.com/title/${movie.imdbID}` }><a target="_blank"><img src="/imdb.png" alt="imdb" /></a></Link>
-                            <p>{movie.imdbRating}</p>
-                        </div>
-                        <div className="movie-title-details">
-                            <h6>{movie.Year}</h6>
-                            <h3>{movie.Title}</h3>
-                            <p>{movie.Plot}</p>
-                        </div>
-                    </div>
+    if (!movie.Title) {
+        return null
+    }
+    return (
+        <div className="movie-card">
+            <div className="poster">
+                <div className="image-div">
+                    <img
+                        src={movie.Poster == "N/A" ? "./image-not-available.png" : movie.Poster}
+                        alt={`${movie.Title} movie poster`}
+                    />
                 </div>
-            )
-        
+                <button>{type ? type : movie.Genre ? movie.Genre.split(" ")[0] : "Not Found"}</button>
+                <button onClick={() => addToFavorites(movie)} disabled={storedMovie}>
+                    <i className="far fa-heart"></i>
+                </button>
+            </div>
+            <div className="movie-details">
+                <div className="imdb-info">
+                    <Link href={`https://www.imdb.com/title/${movie.imdbID}`}>
+                        <a target="_blank">
+                            <img src="/imdb.png" alt="imdb" />
+                        </a>
+                    </Link>
+                    <p>{movie.imdbRating}</p>
+                </div>
+                <div className="movie-title-details">
+                    <h6>{movie.Year}</h6>
+                    <h3>{movie.Title}</h3>
+                    <p>{movie.Plot}</p>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default SingleMovie

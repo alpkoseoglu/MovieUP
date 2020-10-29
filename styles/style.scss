@@ -73,7 +73,9 @@ input {
     padding: 0.625rem 0.725rem;
     width: 15em;
 }
-
+.search {
+    display: none;
+}
 .search > i {
     position: relative;
     left: -25px;
@@ -81,11 +83,7 @@ input {
 }
 
 .breadcrumbs {
-    background: linear-gradient(
-        90deg,
-        rgba(245, 197, 24, 0.26) 22.24%,
-        rgba(251, 247, 252, 0) 100%
-    );
+    background: linear-gradient(90deg, rgba(245, 197, 24, 0.26) 22.24%, rgba(251, 247, 252, 0) 100%);
     margin: 1.6rem auto;
     padding: 2% 14%;
     font-size: small;
@@ -161,13 +159,14 @@ input {
     z-index: 1;
     width: 100%;
     padding-top: 0;
+    margin-top: 2em;
 
     > .wide-search-list {
         display: flex;
         list-style-type: none;
         flex-direction: column;
         align-items: center;
-        padding: 0;
+        padding: 5px 0;
         margin: auto 10%;
         background-color: $white;
         border-radius: 5px;
@@ -199,6 +198,7 @@ input {
                 top: 8px;
                 right: 25px;
                 opacity: 0.6;
+                width: 0;
             }
             &:nth-child(3) {
                 display: flex;
@@ -221,6 +221,7 @@ input {
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
+        margin-top: 2em;
         h2 {
             font-size: 1.2rem;
             font-family: $font;
@@ -317,6 +318,7 @@ input {
         padding: 0;
 
         .search {
+            display: block;
             padding-top: 1.1em;
             padding-left: 0.5em;
         }
@@ -364,12 +366,17 @@ input {
     header {
         margin: -1% auto;
     }
-    .hero-text > p {
-        width: 60vw;
-        margin: auto auto auto 0;
+    .hero {
+        .hero-text {
+            > p {
+                width: 60vw;
+                margin: 0;
+            }
+        }
     }
 
     .wide-search {
+        margin-top: 0;
         .wide-search-list {
             margin: 10% 14% auto 15%;
             flex-direction: row;
@@ -471,8 +478,8 @@ input {
 }
 
 .results-header {
-    margin: 7em 0% -8em 0%;
-    padding: 0 10rem;
+    margin: 10em 0 -8em 2em;
+    padding: 0 1rem;
 
     h2 > span {
         color: $yellow;
@@ -488,9 +495,9 @@ input {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin: 6em 0;
+    margin: 6em 3em;
     padding: 2rem 8rem;
 
     .movie-card {
@@ -593,5 +600,27 @@ input {
                 }
             }
         }
+    }
+}
+
+@media (min-width: 500px) {
+    .results-header {
+        padding: 0 7rem;
+        margin-top: 12em;
+    }
+}
+@media (min-width: 720px) {
+    .results-header {
+        margin: 8em 0 -8em 2em;
+        padding: 0 10rem;
+    }
+    .movie-card {
+        margin: 1em 1em;
+    }
+}
+@media (min-width: 1023px) {
+    .results-header {
+        margin: 10em 0 -8em 2em;
+        padding: 0 11rem;
     }
 }

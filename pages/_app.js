@@ -1,11 +1,11 @@
 import "../styles/style.scss"
 
-import {GlobalProvider} from "../context/GlobalState"
+import { GlobalStateProvider2 } from "../context/GlobalState2"
 
 export default function MyApp({ Component, pageProps }) {
     return (
-      <GlobalProvider>
-        <Component {...pageProps} />
-      </GlobalProvider>
-      )
-  }
+        <GlobalStateProvider2>
+            <Component {...pageProps} />
+        </GlobalStateProvider2>
+    )
+}

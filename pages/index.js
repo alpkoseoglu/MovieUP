@@ -1,8 +1,21 @@
 import Page from "./Page"
 import Head from "next/head"
 import SearchComponent from "../components/SearchComponent"
+import { useEffect, useContext } from "react"
+import { GlobalState2 } from "../context/GlobalState2"
 
 const HomePage = () => {
+    const { getFavoritesFromLocalStorage } = useContext(GlobalState2)
+
+    useEffect(() => {
+        if (localStorage) {
+            if (localStorage.getItem("favorites")) {
+                getFavoritesFromLocalStorage(JSON.parse(localStorage.getItem("favorites")))
+            } else {
+                localStorage.setItem("favorites", JSON.stringify([]))
+            }
+        }
+    }, [])
     return (
         <Page>
             <Head>
@@ -11,10 +24,18 @@ const HomePage = () => {
             <main>
                 <div className="hero">
                     <div className="hero-text">
-                        <h1>Welcome to<br/><span>MovieUP</span></h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+                        <h1>
+                            Welcome to
+                            <br />
+                            <span>MovieUP</span>
+                        </h1>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris
+                        </p>
                     </div>
-                    <SearchComponent/>
+                    <SearchComponent />
                 </div>
                 <div className="carusel">
                     <div className="carusel-header">
@@ -24,10 +45,14 @@ const HomePage = () => {
                     <div className="carusel-area">
                         <button className="arrow left">&#60;</button>
                         <div className="movie-card">
-                            <div className="poster"><img src="/poster.jpg" alt="poster" /></div>
+                            <div className="poster">
+                                <img src="/image-not-available.png" alt="poster" />
+                            </div>
                             <div className="movie-details">
                                 <div className="imdb-info">
-                                    <a href=""><img src="/imdb.png" alt="imdb" /></a>
+                                    <a href="">
+                                        <img src="/imdb.png" alt="imdb" />
+                                    </a>
                                     <p>7.8</p>
                                     <button>Action</button>
                                     <button>Biography</button>
@@ -35,11 +60,18 @@ const HomePage = () => {
                                 <div className="movie-title-details">
                                     <h6>1978</h6>
                                     <h3>The Godfather</h3>
-                                    <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <p>
+                                        This is a wider card with supporting text below as a natural lead-in to
+                                        additional content. This content is a little bit longer.
+                                    </p>
                                 </div>
                                 <div className="actions">
-                                    <button><i className="far fa-heart"></i> Add to Favorites</button>
-                                    <a href=""><small>View Details</small></a>
+                                    <button>
+                                        <i className="far fa-heart"></i> Add to Favorites
+                                    </button>
+                                    <a href="">
+                                        <small>View Details</small>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +79,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </main>
-        </Page>    
+        </Page>
     )
 }
-  export default HomePage
+export default HomePage

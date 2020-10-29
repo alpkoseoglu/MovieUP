@@ -1,6 +1,6 @@
 import Page from "./Page"
 import Head from "next/head"
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 
 import SingleMovie from "../components/SingleMovie"
 
@@ -10,8 +10,7 @@ const Favorites = () => {
     useEffect(() => {
         const favorites = JSON.parse(localStorage.getItem("favorites"))
         setMovies(favorites)
-        
-    },[])
+    }, [])
 
     return (
         <Page>
@@ -19,13 +18,14 @@ const Favorites = () => {
                 <title>MovieUp - Favorites</title>
             </Head>
             <div className="breadcrumbs">
-                <span>Home / </span><span>Favorites</span>
+                <span>Home / </span>
+                <span>Favorites</span>
             </div>
             <div className="favorites-header">
-                <h2>Favorites</h2>          
+                <h2>Favorites</h2>
             </div>
             <div className="results-container">
-                {movies && movies.map(movie => <SingleMovie key={movie} mov={movie} type={""}/>)}
+                {movies && movies.map((movie) => <SingleMovie key={movie} mov={movie.imdbID} type={""} />)}
             </div>
         </Page>
     )

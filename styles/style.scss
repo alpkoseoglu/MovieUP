@@ -603,6 +603,28 @@ input {
     }
 }
 
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 10em;
+    .page-item {
+        margin: 4px 2px;
+        width: 3em;
+        height: 3em;
+        background: burlywood;
+        list-style-type: none;
+        text-align: center;
+        padding-top: 0.8em;
+        background-color: $yellow;
+        color: $white;
+        cursor: pointer;
+        a {
+            text-decoration: none;
+        }
+    }
+}
+
 @media (min-width: 500px) {
     .results-header {
         padding: 0 7rem;

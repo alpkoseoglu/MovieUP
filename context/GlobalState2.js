@@ -1,6 +1,8 @@
 import { createContext, useState } from "react"
 
 import { useRouter } from "next/router"
+
+//import slug from "slug"
 /*
 const reducer = (state, action) => {
     switch (action.type) {
@@ -82,18 +84,28 @@ export const GlobalStateProvider2 = ({ children }) => {
     const router = useRouter()
 
     const searchMovies = async (name, year) => {
-        let totalPage = 0
+        //let totalPage = 0
         isLoading(true)
         const getMovies = async (pageNo = 1) => {
             let apiResults = await fetch(
                 `https://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&s=${name}&y=${year}&page=${pageNo}`
             ).then((resp) => resp.json())
-            return apiResults.Search
+            return apiResults
         }
+        let total = []
         const getAll = async (pageNo = 1) => {
             const results = await getMovies(pageNo)
+            total = [...total, ...results.Search]
             console.log("Retrieving data from api for page :" + pageNo)
-            if (pageNo == 1) {
+            if (results.Response == "False" || results.Search.length < 10 || pageNo == 5) {
+                setResults(total)
+                isLoading(false)
+                router.push("/search-results")
+                return
+            } else {
+                return total.concat(await getAll(pageNo + 1))
+            }
+            /*if (pageNo == 1) {
                 totalPage = Math.ceil(results.totalResults / 10)
             }
             if (pageNo <= totalPage) {
@@ -103,10 +115,36 @@ export const GlobalStateProvider2 = ({ children }) => {
                 isLoading(false)
                 router.push("/search-results")
             }
+            */
         }
         getAll()
     }
+    /*
+    const searchMovies = async (name, year) => {
+        let pageNo = 1
+        let movies = []
 
+        isLoading(true)
+
+        while (1) {
+            const res = await fetch(
+                `https://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&s=${name}&y=${year}&page=${pageNo}`
+            )
+            const resp = await res.json()
+            if (resp.Response == "False" || resp.Search.length < 10 || pageNo >= 100) {
+                setResults(movies)
+                isLoading(false)
+                console.log(movies)
+                break
+            } else {
+                movies.concat(resp.Search)
+                pageNo++
+            }
+        }
+        console.log(movies)
+        router.push("/search-results")
+    }
+*/
     const getFavoritesFromLocalStorage = (favs) => {
         setFavorites(favs)
     }

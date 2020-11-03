@@ -13,7 +13,7 @@ const SearchResults = () => {
     const [type, setType] = useState("")
 
     const [currentPage, setCurrentPage] = useState(1)
-    const [moviePerPage] = useState(10)
+    const [moviePerPage] = useState(5)
     const [currentMovies, setCurrentMovies] = useState([])
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
